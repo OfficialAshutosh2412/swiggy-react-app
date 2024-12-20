@@ -4,7 +4,7 @@ import swiggyLogo from "../assets/swiggy-1.svg";
 const Navbar = () => {
   const navLinkStyle = {
     decoration:
-      "flex items-center justify-center gap-1 relative after:content-[''] after:absolute after:w-full after:left-0 after:bottom-0 after:border after:border-transparent hover:after:border-orange-500 p-1 after:transition-all after:duration-300 after:ease-in-out",
+      "flex items-center justify-center gap-1 relative after:content-[''] after:absolute after:w-full after:left-0 after:bottom-0 after:border after:border-transparent hover:after:border-orange-500 p-1 after:transition-all after:duration-300 after:ease-in-out hover:text-orange-500",
   };
   return (
     <nav className="flex w-full items-center justify-evenly shadow-md  h-14">
