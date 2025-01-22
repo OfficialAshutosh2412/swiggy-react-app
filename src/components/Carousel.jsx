@@ -1,20 +1,20 @@
-import { useState } from "react";
-
-const ItemCarousel = ({ cardData: { title, cardZero } }) => {
+import React, { useState } from "react";
+import ItemCarousel from "./ItemCarousel";
+import TopRestaurant from "./TopRestaurant";
+const Carousel = ({ cardData, comp }) => {
   const [scrollValue, setScrollValue] = useState(0);
   function handleNext() {
-    scrollValue === 128
-      ? setScrollValue(128)
-      : setScrollValue((prev) => prev + 32);
+    setScrollValue(100);
+    console.log(scrollValue);
   }
   function handlePrev() {
-    scrollValue === 0 ? setScrollValue(0) : setScrollValue((prev) => prev - 32);
+    setScrollValue(0);
   }
   return (
     <section className=" mt-5 ">
       <div className="flex justify-between items-center">
         <div>
-          <h3 className="text-lg font-bold">{title}</h3>
+          <h3 className="text-lg font-bold">{cardData.title}</h3>
         </div>
         <div className="flex items-center gap-2">
           <button
@@ -30,7 +30,7 @@ const ItemCarousel = ({ cardData: { title, cardZero } }) => {
           <button
             onClick={handleNext}
             className={`w-7 h-7 rounded-full shadow-md ${
-              scrollValue === 128
+              scrollValue === 100
                 ? "bg-gray-100 text-gray-300 cursor-not-allowed"
                 : "bg-gray-200 text-black active:bg-gray-300 active:scale-95"
             } p-1  `}
@@ -41,20 +41,14 @@ const ItemCarousel = ({ cardData: { title, cardZero } }) => {
       </div>
       <div className=" overflow-hidden">
         <div
-          style={{ translate: `-${scrollValue}%` }}
-          className={`flex items-center gap-3 duration-500 ease-in-out mt-1`}
+          style={{ translate: `-250%` }}
+          className={`bg-black flex items-center gap-3 duration-500 ease-in-out`}
         >
-          {cardZero.map(({ id, imageId }) => (
-            <img
-              key={id}
-              src={`https://media-assets.swiggy.com/swiggy/image/upload/${imageId}`}
-              className="w-28"
-            />
-          ))}
+          {comp}
         </div>
       </div>
     </section>
   );
 };
 
-export default ItemCarousel;
+export default Carousel;

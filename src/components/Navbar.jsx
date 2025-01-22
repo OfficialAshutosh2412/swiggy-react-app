@@ -2,10 +2,32 @@ import React from "react";
 import swiggyLogo from "../assets/swiggy-1.svg";
 
 const Navbar = () => {
-  const navLinkStyle = {
-    decoration:
-      "flex items-center justify-center gap-1 relative after:content-[''] after:absolute after:w-full after:left-0 after:bottom-0 after:border after:border-transparent hover:after:border-orange-500 p-1 after:transition-all after:duration-300 after:ease-in-out hover:text-orange-500",
-  };
+  const navLink = [
+    {
+      navLabel: "swiggy corporate",
+      navIcon: "fi-rs-shopping-bag",
+    },
+    {
+      navLabel: "search",
+      navIcon: "fi-rs-search",
+    },
+    {
+      navLabel: "offer",
+      navIcon: "fi-rr-badge-percent",
+    },
+    {
+      navLabel: "help",
+      navIcon: "fi-rr-info",
+    },
+    {
+      navLabel: "sign in",
+      navIcon: "fi-rs-user",
+    },
+    {
+      navLabel: "cart",
+      navIcon: "fi-rr-shopping-cart",
+    },
+  ];
   return (
     <nav className="flex w-full items-center justify-evenly shadow-md  h-14">
       <div className="flex items-center gap-8">
@@ -24,42 +46,17 @@ const Navbar = () => {
         </span>
       </div>
       <ul className="flex items-center gap-8 font-semibold capitalize text-sm">
-        <li className="flex justify-center items-center">
-          <a href="#" className={navLinkStyle.decoration}>
-            <i className="fi fi-rs-shopping-bag mt-1"></i>
-            <p className="">swiggy corporate</p>
-          </a>
-        </li>
-        <li>
-          <a href="#" className={navLinkStyle.decoration}>
-            <i className=" fi fi-rs-search mt-1"></i>
-            <p>search</p>
-          </a>
-        </li>
-        <li>
-          <a href="#" className={navLinkStyle.decoration}>
-            <i className=" fi fi-rr-badge-percent mt-1"></i>
-            <p>offer</p>
-          </a>
-        </li>
-        <li>
-          <a href="#" className={navLinkStyle.decoration}>
-            <i className=" fi fi-rr-info mt-1"></i>
-            <p>help</p>
-          </a>
-        </li>
-        <li>
-          <a href="#" className={navLinkStyle.decoration}>
-            <i className=" fi fi-rs-user mt-1"></i>
-            <p>sign in</p>
-          </a>
-        </li>
-        <li>
-          <a href="#" className={navLinkStyle.decoration}>
-            <i className=" fi fi-rr-shopping-cart mt-1"></i>
-            <p>cart</p>
-          </a>
-        </li>
+        {navLink.map((data, index) => (
+          <li key={index}>
+            <a
+              href="#"
+              className="flex items-center justify-center gap-1 relative after:content-[''] after:absolute after:w-full after:left-0 after:bottom-0 after:border after:border-transparent hover:after:border-orange-500 p-1 after:transition-all after:duration-300 after:ease-in-out hover:text-orange-500"
+            >
+              <i className={`fi ${data.navIcon} mt-1`}></i>
+              <p>{data.navLabel}</p>
+            </a>
+          </li>
+        ))}
       </ul>
     </nav>
   );

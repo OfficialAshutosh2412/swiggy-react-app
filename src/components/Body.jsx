@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, Suspense } from "react";
 import ItemCarousel from "./ItemCarousel";
+import TopRestaurant from "./TopRestaurant";
 
 const Body = () => {
   //first card state
@@ -7,7 +8,10 @@ const Body = () => {
     title: "",
     cardZero: [],
   });
-
+  const [secondCardData, setSecondCardData] = useState({
+    title: "",
+    cardOne: [],
+  });
   //api call function
   async function fetchApiData() {
     const res = await fetch(
@@ -24,7 +28,13 @@ const Body = () => {
       title: apiCall.data.cards[0].card.card.header.title,
       cardZero: apiCall.data.cards[0].card.card.imageGridCards.info,
     };
+    const returendObjectTwo = {
+      title: apiCall.data.cards[1].card.card.header.title,
+      cardOne:
+        apiCall.data.cards[1].card.card.gridElements.infoWithStyle.restaurants,
+    };
     setFirstCardData(returendObject);
+    setSecondCardData(returendObjectTwo);
   }
 
   //onload functions
@@ -34,6 +44,7 @@ const Body = () => {
   return (
     <main className="w-4/5 m-auto">
       <ItemCarousel cardData={firstCardData} />
+      <TopRestaurant cardData={secondCardData} />
     </main>
   );
 };

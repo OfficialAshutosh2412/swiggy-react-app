@@ -1,14 +1,16 @@
-import { useState } from "react";
+import React, { useState } from "react";
+import RestaurantCard from "./RestaurantCard";
 
-const ItemCarousel = ({ cardData: { title, cardZero } }) => {
+const TopRestaurant = ({ cardData: { title, cardOne } }) => {
   const [scrollValue, setScrollValue] = useState(0);
+  const scrollingIndex = 330;
   function handleNext() {
-    scrollValue === 128
-      ? setScrollValue(128)
-      : setScrollValue((prev) => prev + 32);
+    scrollValue === scrollingIndex
+      ? setScrollValue(scrollingIndex)
+      : setScrollValue((prev) => prev + 30);
   }
   function handlePrev() {
-    scrollValue === 0 ? setScrollValue(0) : setScrollValue((prev) => prev - 32);
+    scrollValue === 0 ? setScrollValue(0) : setScrollValue((prev) => prev - 30);
   }
   return (
     <section className=" mt-5 ">
@@ -30,7 +32,7 @@ const ItemCarousel = ({ cardData: { title, cardZero } }) => {
           <button
             onClick={handleNext}
             className={`w-7 h-7 rounded-full shadow-md ${
-              scrollValue === 128
+              scrollValue === scrollingIndex
                 ? "bg-gray-100 text-gray-300 cursor-not-allowed"
                 : "bg-gray-200 text-black active:bg-gray-300 active:scale-95"
             } p-1  `}
@@ -42,19 +44,17 @@ const ItemCarousel = ({ cardData: { title, cardZero } }) => {
       <div className=" overflow-hidden">
         <div
           style={{ translate: `-${scrollValue}%` }}
-          className={`flex items-center gap-3 duration-500 ease-in-out mt-1`}
+          className={` flex items-center gap-3 duration-500 ease-in-out`}
         >
-          {cardZero.map(({ id, imageId }) => (
-            <img
-              key={id}
-              src={`https://media-assets.swiggy.com/swiggy/image/upload/${imageId}`}
-              className="w-28"
-            />
-          ))}
+          <div className="flex whitespace-nowrap mt-3">
+            {cardOne.map(({ info }) => (
+              <RestaurantCard infos={info} />
+            ))}
+          </div>
         </div>
       </div>
     </section>
   );
 };
 
-export default ItemCarousel;
+export default TopRestaurant;
