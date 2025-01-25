@@ -47,8 +47,8 @@ const TopRestaurant = ({ cardData: { title, cardOne } }) => {
           className={` flex items-center gap-3 duration-500 ease-in-out`}
         >
           <div className="flex whitespace-nowrap mt-3">
-            {cardOne.map(({ info }) => (
-              <RestaurantCard infos={info} />
+            {cardOne.map(({ info, cta }, index) => (
+              <RestaurantCard key={index} infos={info} urlInfo={cta} />
             ))}
           </div>
         </div>

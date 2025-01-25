@@ -1,7 +1,7 @@
-import { info } from "autoprefixer";
 import React from "react";
+import { Link } from "react-router-dom";
 
-const RestaurantCard = ({ infos }) => {
+const RestaurantCard = ({ infos, urlInfo }) => {
   const {
     id,
     cloudinaryImageId,
@@ -13,13 +13,12 @@ const RestaurantCard = ({ infos }) => {
     costForTwo,
     locality,
   } = infos;
+  const { link } = urlInfo;
+  const urlID = link.split("/").at(-1);
   return (
-    <>
-      {console.log(infos)}
-
+    <Link to={`/restaurant-menu/${urlID}`} key={id}>
       <div
-        className="w-52 m-2 break-words text-wrap hover:scale-110 duration-300 ease-in-out"
-        key={id}
+        className={`w-52 m-2 break-words text-wrap hover:scale-110 duration-300 ease-in-out`}
       >
         <div
           className="h-28 w-full bg-no-repeat bg-center object-cover bg-cover rounded-xl overflow-hidden text-white font-bold capitalize"
@@ -54,12 +53,12 @@ const RestaurantCard = ({ infos }) => {
             {cuisines.join(", ")}
           </p>
           <p className="text-gray-700/70 text-xs capitalize font-semibold">
-            <i class="fi fi-sr-marker text-red-500"></i>
+            <i className="fi fi-sr-marker text-red-500"></i>
             {locality}
           </p>
         </div>
       </div>
-    </>
+    </Link>
   );
 };
 

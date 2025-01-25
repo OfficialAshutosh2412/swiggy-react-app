@@ -1,6 +1,7 @@
 import React, { useEffect, useState, Suspense } from "react";
 import ItemCarousel from "./ItemCarousel";
 import TopRestaurant from "./TopRestaurant";
+import OnlineRestaurant from "./OnlineRestaurant";
 
 const Body = () => {
   //first card state
@@ -44,7 +45,11 @@ const Body = () => {
   return (
     <main className="w-4/5 m-auto">
       <ItemCarousel cardData={firstCardData} />
+      <div className="border-2 border-gray-100 my-4"></div>
       <TopRestaurant cardData={secondCardData} />
+      <div className="border-2 border-gray-100 my-4"></div>
+      {/* <OnlineRestaurant cardData={secondCardData} />
+      <div className="border-2 border-gray-100 my-4"></div> */}
     </main>
   );
 };
