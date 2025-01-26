@@ -8,8 +8,8 @@ const OnlineRestaurant = ({ cardData: { cardOne }, wid }) => {
         Restaurants with online food delivery in Lucknow
       </h1>
       <div className="grid grid-cols-4 gap-3">
-        {cardOne.map(({ info }) => (
-          <RestaurantCard infos={info} wid={wid} />
+        {cardOne.map(({ info, cta }, index) => (
+          <RestaurantCard key={index} infos={info} urlInfo={cta} />
         ))}
       </div>
     </div>

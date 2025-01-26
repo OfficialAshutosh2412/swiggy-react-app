@@ -48,8 +48,8 @@ const Body = () => {
       <div className="border-2 border-gray-100 my-4"></div>
       <TopRestaurant cardData={secondCardData} />
       <div className="border-2 border-gray-100 my-4"></div>
-      {/* <OnlineRestaurant cardData={secondCardData} />
-      <div className="border-2 border-gray-100 my-4"></div> */}
+      <OnlineRestaurant cardData={secondCardData} />
+      <div className="border-2 border-gray-100 my-4"></div>
     </main>
   );
 };
