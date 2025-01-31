@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import OfferCard from "./OfferCard";
+import MenuItemCard from "./MenuItemCard";
+import MenuCategoryCard from "./MenuCategoryCard";
 
 const RestaurantMenu = () => {
   const { id } = useParams();
@@ -11,6 +13,7 @@ const RestaurantMenu = () => {
     .join("");
   const [restaurantData, setRestaurantData] = useState([]);
   const [discountData, setDiscountData] = useState([]);
+  const [menu, setMenu] = useState([]);
   const [scrollValue, setScrollValue] = useState(0);
   const scrollingIndex = 120;
   function handleNext() {
@@ -37,10 +40,12 @@ const RestaurantMenu = () => {
     setDiscountData(
       apiData?.data?.cards[3]?.card?.card?.gridElements?.infoWithStyle?.offers
     );
-    setMenu(
-      apiData?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]
-        ?.card?.card
-    );
+
+    let filtered =
+      (apiData?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards).filter(
+        (data) => data?.card?.card?.itemCards || data?.card?.card?.categories
+      );
+    setMenu(filtered);
   }
   useEffect(() => {
     dataExtractionMethod(mainID);
@@ -141,6 +146,49 @@ const RestaurantMenu = () => {
                   <OfferCard data={info} key={index} />
                 ))}
               </div>
+            </div>
+          </div>
+          {/* menu */}
+          <div className="mt-14">
+            <h1 className=" flex items-center justify-center gap-2 text-gray-500">
+              <i className="fi fi-bs-leaf -rotate-[135deg] text-xs"></i>
+              <p className="uppercase text-md tracking-widest font-semibold">
+                Menu
+              </p>
+              <i className="fi fi-bs-leaf text-xs rotate-[45deg] pt-1"></i>
+            </h1>
+            {/* search bar */}
+            <div className="bg-gray-100 text-gray-500 p-2 text-md py-3 w-full rounded-xl font-bold relative text-center mt-3 cursor-pointer">
+              <p>Search for dishes</p>
+              <i className="fi fi-rr-search absolute top-1/2 -translate-y-1/2 bottom-0 right-2"></i>
+            </div>
+            <div>
+              {menu.map(
+                (
+                  {
+                    card: {
+                      card: { itemCards, title, categories },
+                    },
+                  },
+                  index
+                ) => (
+                  <div key={index}>
+                    {itemCards ? (
+                      <MenuItemCard
+                        title={title}
+                        menuData={itemCards}
+                        index={index}
+                      />
+                    ) : (
+                      <MenuCategoryCard
+                        title={title}
+                        menuData={categories}
+                        index={index}
+                      />
+                    )}
+                  </div>
+                )
+              )}
             </div>
           </div>
         </div>
