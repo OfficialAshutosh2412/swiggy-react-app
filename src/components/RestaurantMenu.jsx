@@ -162,7 +162,7 @@ const RestaurantMenu = () => {
               <p>Search for dishes</p>
               <i className="fi fi-rr-search absolute top-1/2 -translate-y-1/2 bottom-0 right-2"></i>
             </div>
-            <div>
+            <div className="mt-5">
               {menu.map(
                 (
                   {
@@ -172,7 +172,7 @@ const RestaurantMenu = () => {
                   },
                   index
                 ) => (
-                  <div key={index}>
+                  <div key={index} className="border-b-[20px] border-gray-100">
                     {itemCards ? (
                       <MenuItemCard
                         title={title}
